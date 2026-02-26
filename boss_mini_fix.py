@@ -3,8 +3,6 @@
 
 #Fix
 
-SECRET_CODE = "replace_code"
-
 p_hp = 50
 b_hp = 50
 
@@ -30,19 +28,18 @@ def heal():
 # --- Simple Game Loop ---
 while p_hp > 0 and b_hp > 0:
   print(f"\nPlayer: {p_hp} | Boss: {b_hp}")
-  choice = input("Action [a]ttack, [h]eal, [c]heat: ").lower()
+  choice = input("Action [a]ttack, [h]eal").lower()
   
   while True:
     if choice == 'a':
         attack()
+        break
     elif choice == 'h':
         heal()
-    elif choice == 'c':
-        if input("Code: ") == SECRET_CODE:
-            b_hp = 0
         break
     else:
-        print(f"Invalid Input. Try again.")
+        print(f"Invalid Input! Try again.")
+        
 
   if b_hp > 0:
     p_hp -= 10
