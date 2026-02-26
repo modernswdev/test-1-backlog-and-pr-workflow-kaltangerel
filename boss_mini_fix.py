@@ -18,19 +18,22 @@ def attack():
 
 def heal():
   global p_hp
-  if (p_hp < 50 and p_hp > 0):
-      p_hp += 20
+  if p_hp <= 0:
+      return
+  
+  if (p_hp < 50):
+      p_hp = min(50, p_hp + 20)
       print(f"Healed! HP is now {p_hp}")
-  elif (p_hp >= 50):
+  else:
       print(f"HP is full!")
   
 
 # --- Simple Game Loop ---
 while p_hp > 0 and b_hp > 0:
   print(f"\nPlayer: {p_hp} | Boss: {b_hp}")
-  choice = input("Action [a]ttack, [h]eal").lower()
   
   while True:
+    choice = input("Action [a]ttack, [h]eal").lower()
     if choice == 'a':
         attack()
         break
@@ -45,6 +48,6 @@ while p_hp > 0 and b_hp > 0:
     p_hp -= 10
 
 if p_hp <= 0:
-    print("victory!")
+    print("Defeat!!")
 elif b_hp <= 0:
-    print("Defeat!")
+    print("Victory!")
